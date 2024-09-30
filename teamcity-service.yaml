@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: teamcity-svc-out
+  labels:
+    run: teamcity-server
+spec:
+  ports:
+    - name: tcserv
+      protocol: TCP
+      port: 80
+      targetPort: 8111
+  type: NodePort
+  selector:
+    run: teamcity-server
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: teamcity-svc-sip
+  labels:
+    run: teamcity-server
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: teamcity-server
